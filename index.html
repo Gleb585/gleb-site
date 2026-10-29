@@ -1,0 +1,629 @@
+﻿<!DOCTYPE html>
+
+<html lang="ru">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Глеб Вне Кадра | Моя жизнь в Омске</title>
+
+    <meta name="description" content="Личный блог Глеба. Моя жизнь в Омске. Фото, видео и эксклюзивный контент.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+    
+
+    <style>
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        
+
+        body {
+
+            background: linear-gradient(135deg, #0a1128 0%, #000000 100%);
+
+            color: #ffffff;
+
+            font-family: 'Montserrat', sans-serif;
+
+            overflow-x: hidden;
+
+        }
+
+
+
+        .glow-1, .glow-2 {
+
+            position: absolute;
+
+            background-color: #FFD700;
+
+            filter: blur(150px);
+
+            opacity: 0.15;
+
+            border-radius: 50%;
+
+            z-index: -1;
+
+        }
+
+        .glow-1 { width: 400px; height: 400px; top: -100px; left: -100px; }
+
+        .glow-2 { width: 300px; height: 300px; bottom: 20%; right: -100px; }
+
+
+
+        /* Главный экран */
+
+        .hero {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            max-width: 1200px;
+
+            margin: 0 auto;
+
+            min-height: 100vh;
+
+            padding: 40px 5%;
+
+            gap: 50px;
+
+        }
+
+
+
+        .hero-content { flex: 1; z-index: 2; }
+
+        
+
+        .name-title {
+
+            font-family: 'Bebas Neue', sans-serif;
+
+            font-size: 6.5rem;
+
+            line-height: 0.9;
+
+            color: #FFD700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 10px;
+
+            text-shadow: 4px 4px 0px rgba(0,0,0,0.5);
+
+        }
+
+        
+
+        .subtitle {
+
+            font-family: 'Bebas Neue', sans-serif;
+
+            font-size: 2.5rem;
+
+            color: #ffffff;
+
+            margin-bottom: 30px;
+
+            letter-spacing: 1px;
+
+        }
+
+
+
+        .tg-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            background-color: #FFD700;
+
+            color: #000000;
+
+            text-decoration: none;
+
+            padding: 18px 40px;
+
+            font-size: 1.3rem;
+
+            font-weight: 700;
+
+            border-radius: 10px;
+
+            transition: all 0.3s ease;
+
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+
+            text-transform: uppercase;
+
+        }
+
+        .tg-btn:hover {
+
+            transform: translateY(-3px) scale(1.02);
+
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.5);
+
+            background-color: #FFE55C;
+
+        }
+
+        .tg-btn svg { width: 28px; height: 28px; margin-right: 15px; }
+
+
+
+        .hero-image {
+
+            flex: 1;
+
+            display: flex;
+
+            justify-content: center;
+
+        }
+
+        .hero-image img {
+
+            width: 100%;
+
+            max-width: 450px;
+
+            border-radius: 20px;
+
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.2);
+
+            border: 2px solid rgba(255, 215, 0, 0.5);
+
+        }
+
+
+
+        /* Заголовки секций */
+
+        .section-title {
+
+            font-family: 'Bebas Neue', sans-serif;
+
+            font-size: 3.5rem;
+
+            color: #FFD700;
+
+            text-align: center;
+
+            margin-bottom: 40px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+
+        }
+
+
+
+        /* Обо мне */
+
+        .about-section {
+
+            max-width: 900px;
+
+            margin: 0 auto;
+
+            padding: 80px 5%;
+
+            text-align: left;
+
+        }
+
+        
+
+        .about-text {
+
+            font-size: 1.15rem;
+
+            line-height: 1.8;
+
+            color: #cccccc;
+
+            background: rgba(255, 255, 255, 0.03);
+
+            padding: 40px;
+
+            border-radius: 20px;
+
+            border: 1px solid rgba(255, 215, 0, 0.2);
+
+        }
+
+
+
+        .about-text p { margin-bottom: 20px; }
+
+        .about-text p:last-child { margin-bottom: 0; color: #FFD700; font-weight: 600; }
+
+
+
+        /* Галерея */
+
+        .gallery-section {
+
+            max-width: 1200px;
+
+            margin: 0 auto;
+
+            padding: 80px 5%;
+
+        }
+
+
+
+        .grid-gallery {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+            gap: 20px;
+
+        }
+
+
+
+        .gallery-item {
+
+            display: flex;
+
+            flex-direction: column;
+
+            background: rgba(255, 255, 255, 0.03);
+
+            border-radius: 15px;
+
+            transition: transform 0.3s ease;
+
+        }
+
+
+
+        .gallery-item:hover {
+
+            transform: translateY(-5px);
+
+        }
+
+        
+
+        .gallery-item img {
+
+            width: 100%;
+
+            height: 350px;
+
+            object-fit: cover;
+
+            border-radius: 15px 15px 0 0;
+
+            filter: grayscale(30%);
+
+            transition: filter 0.3s ease;
+
+        }
+
+        
+
+        .gallery-item:hover img {
+
+            filter: grayscale(0%);
+
+        }
+
+
+
+        .gallery-caption {
+
+            padding: 15px;
+
+            text-align: center;
+
+            font-size: 0.9rem;
+
+            font-weight: 600;
+
+            color: #FFD700;
+
+            border-radius: 0 0 15px 15px;
+
+            border: 1px solid rgba(255, 215, 0, 0.2);
+
+            border-top: none;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+        }
+
+
+
+        /* Соцсети */
+
+        .socials-section {
+
+            text-align: center;
+
+            padding: 80px 5% 100px;
+
+        }
+
+
+
+        .social-links {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 20px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+
+        .social-btn {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            text-decoration: none;
+
+            color: #fff;
+
+            background: rgba(255, 255, 255, 0.05);
+
+            padding: 15px 30px;
+
+            border-radius: 50px;
+
+            font-weight: 600;
+
+            transition: all 0.3s ease;
+
+            border: 1px solid rgba(255, 255, 255, 0.1);
+
+        }
+
+
+
+        .social-btn:hover {
+
+            background: #FFD700;
+
+            color: #000;
+
+            border-color: #FFD700;
+
+            transform: translateY(-3px);
+
+        }
+
+
+
+        /* Исправленный размер иконок в соцсетях */
+
+        .social-btn svg { 
+
+            width: 28px; 
+
+            height: 28px; 
+
+            fill: currentColor; 
+
+            overflow: visible;
+
+        }
+
+
+
+        /* Адаптив для телефонов */
+
+        @media (max-width: 900px) {
+
+            .hero {
+
+                flex-direction: column-reverse;
+
+                text-align: center;
+
+                padding-top: 100px;
+
+                min-height: auto;
+
+            }
+
+            .name-title { font-size: 4.5rem; }
+
+            .subtitle { font-size: 1.8rem; margin-bottom: 30px; }
+
+            .hero-image img { max-width: 300px; }
+
+            .section-title { font-size: 2.8rem; }
+
+            .about-text { padding: 25px; font-size: 1rem; }
+
+            .gallery-item img { height: 300px; }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+
+    <div class="glow-1"></div>
+
+    <div class="glow-2"></div>
+
+
+
+    <!-- Главный экран -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <h1 class="name-title">ГЛЕБ<br>ВНЕ КАДРА</h1>
+
+            <p class="subtitle">Моя жизнь в Омске</p>
+
+            <a href="https://t.me/glebvnekadra" class="tg-btn" target="_blank">
+
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM15.64 8.8L13.76 17.68C13.62 18.32 13.24 18.48 12.7 18.2L9.92 16.14L8.58 17.44C8.44 17.58 8.32 17.7 8.04 17.7L8.24 14.9L14.56 9.2C14.84 8.96 14.5 8.82 14.14 9.06L6.32 13.98L3.58 13.12C2.98 12.94 2.96 12.54 3.72 12.24L15.02 7.88C15.52 7.7 15.96 8 15.64 8.8Z" fill="currentColor"/>
+
+                </svg>
+
+                Мой Телеграм
+
+            </a>
+
+        </div>
+
+        <div class="hero-image">
+
+            <img src="gleb.jpg" alt="Глеб Вне Кадра">
+
+        </div>
+
+    </header>
+
+
+
+    <!-- Обо мне -->
+
+    <section class="about-section">
+
+        <h2 class="section-title">Обо мне</h2>
+
+        <div class="about-text">
+
+            <p>Я — Глеб, омский блогер. Веду личный блог, в котором рассказываю о своей жизни: учёбе, занятиях спортом и повседневных делах. Делюсь тем, что происходит со мной на самом деле, без прикрас и лишнего пафоса.</p>
+
+            <p>Я совмещаю учёбу, тренировки и работу над контентом — и стараюсь делать это последовательно. Мой блог отражает мой распорядок и мои интересы: то, чему я учусь, и то, чем занимаюсь вне учёбы.</p>
+
+            <p>Подписывайтесь на мои соцсети — там много интересного.</p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- Галерея -->
+
+    <section class="gallery-section">
+
+        <h2 class="section-title">Кадры из жизни</h2>
+
+        <div class="grid-gallery">
+
+            
+
+            <!-- Фото 1 -->
+
+            <div class="gallery-item">
+
+                <img src="photo1.jpg" alt="Глеб Вне Кадра">
+
+                <div class="gallery-caption">Фотографии из моего Telegram-канала</div>
+
+            </div>
+
+
+
+            <!-- Фото 2 -->
+
+            <div class="gallery-item">
+
+                <img src="photo2.jpg" alt="Глеб в зеркале">
+
+                <div class="gallery-caption">Фотографии из моего Telegram-канала</div>
+
+            </div>
+
+
+
+            <!-- Фото 3 -->
+
+            <div class="gallery-item">
+
+                <img src="photo3.jpg" alt="В компании">
+
+                <div class="gallery-caption">Фотографии из моего Telegram-канала</div>
+
+            </div>
+
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- Другие соцсети -->
+
+    <section class="socials-section">
+
+        <h2 class="section-title">Я в соцсетях</h2>
+
+        <div class="social-links">
+
+            
+
+            <!-- Кнопка ВКонтакте (исправленная иконка + твоя ссылка) -->
+
+            <a href="https://vk.ru/id1112578033" class="social-btn" target="_blank">
+
+                <svg viewBox="0 0 24 24"><path d="M13.162 18.994c.609 0 .858-.406.851-.915-.031-1.917.714-2.949 2.059-1.604 1.488 1.488 1.796 2.519 3.603 2.519h3.2c.808 0 1.126-.26 1.126-.668 0-.863-1.421-2.386-2.625-3.504-1.686-1.565-1.765-1.602-.313-3.486 1.801-2.339 4.157-5.336 2.073-5.336h-3.981c-.772 0-.828.435-1.103 1.083-.995 2.347-2.886 5.387-3.604 4.922-.751-.485-.407-2.406-.35-5.261.015-.754.011-1.271-1.141-1.539-.814-.18-1.826-.18-2.812-.18-2.684 0-3.128.462-3.128 1.19 0 1.83 2.25 2.195 2.25 6.84 0 1.562-1.015 3.417-2.235 3.417-1.262 0-1.588-1.099-3.427-4.217-.864-1.464-1.163-1.505-2.037-1.505h-3.887c-1.245 0-1.502.626-1.502 1.19 0 1.72 4.99 10.01 11.308 10.01h2.847z"/></svg>
+
+                ВКонтакте
+
+            </a>
+
+
+
+        </div>
+
+    </section>
+
+
+
+</body>
+
+</html>
