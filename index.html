@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Улучшенный заголовок и описание для Яндекса -->
     <title>Глеб Вне Кадра — блогер из Омска | Личный блог и Telegram</title>
     <meta name="description" content="Личный блог Глеба (Глеб Вне Кадра). Моя жизнь в Омске: учеба, спорт, питбайки и повседневные дела без прикрас. Подписывайся на мой Telegram-канал!">
     <meta name="keywords" content="Глеб Вне Кадра, Глеб Омск, блогер Омск, личный блог, питбайки, телеграм канал">
@@ -20,7 +19,11 @@
             background: linear-gradient(135deg, #0a1128 0%, #000000 100%);
             color: #ffffff;
             font-family: 'Montserrat', sans-serif;
+            /* Защита от горизонтального скролла на телефонах */
+            width: 100%;
+            max-width: 100vw;
             overflow-x: hidden;
+            position: relative;
         }
 
         .glow-1, .glow-2 {
@@ -234,7 +237,7 @@
             font-size: 0.9rem;
         }
 
-        /* --- НОВАЯ АНИМАЦИЯ ПОЯВЛЕНИЯ --- */
+        /* Анимация появления */
         .fade-in {
             opacity: 0;
             transform: translateY(40px);
@@ -245,11 +248,11 @@
             transform: translateY(0);
         }
 
-        /* --- НОВАЯ КНОПКА "НАВЕРХ" --- */
+        /* --- КНОПКА "НАВЕРХ" (ИСПРАВЛЕНА ДЛЯ ТЕЛЕФОНОВ) --- */
         .scroll-top-btn {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 25px;
+            right: 25px;
             width: 55px;
             height: 55px;
             background-color: #FFD700;
@@ -265,8 +268,8 @@
             visibility: hidden;
             transform: translateY(20px);
             transition: all 0.4s ease;
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
-            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.5);
+            z-index: 9999; /* Максимальный приоритет, чтобы всегда быть сверху */
         }
         .scroll-top-btn.show {
             opacity: 1;
@@ -297,7 +300,14 @@
             .section-title { font-size: 2.8rem; }
             .about-text { padding: 25px; font-size: 1rem; }
             .gallery-item img { height: 300px; }
-            .scroll-top-btn { bottom: 20px; right: 20px; width: 45px; height: 45px; }
+            
+            /* Правки кнопки для мобилок */
+            .scroll-top-btn { 
+                bottom: 20px; 
+                right: 20px; /* Отступ от правого края */
+                width: 50px; 
+                height: 50px; 
+            }
         }
     </style>
 </head>
@@ -323,7 +333,7 @@
         </div>
     </header>
 
-    <!-- Обо мне (с анимацией) -->
+    <!-- Обо мне -->
     <section class="about-section fade-in">
         <h2 class="section-title">Обо мне</h2>
         <div class="about-text">
@@ -333,7 +343,7 @@
         </div>
     </section>
 
-    <!-- Галерея (с анимацией) -->
+    <!-- Галерея -->
     <section class="gallery-section fade-in">
         <h2 class="section-title">Кадры из жизни</h2>
         <div class="grid-gallery">
@@ -356,7 +366,7 @@
         </div>
     </section>
 
-    <!-- Другие соцсети (с анимацией) -->
+    <!-- Другие соцсети -->
     <section class="socials-section fade-in">
         <h2 class="section-title">Я в соцсетях</h2>
         <div class="social-links">
@@ -374,7 +384,7 @@
         </div>
     </section>
 
-    <!-- Подвал (для SEO) -->
+    <!-- Подвал -->
     <footer>
         <p>&copy; 2026 Глеб Вне Кадра. Личный блог блогера из Омска. Все права защищены.</p>
         <p style="display:none;">Глеб Вне Кадра, блогер Омск, личный блог, телеграм канал Глеба, спорт, учеба, питбайки, жизнь в Омске.</p>
@@ -387,39 +397,31 @@
         </svg>
     </button>
 
-    <!-- СКРИПТЫ ДЛЯ АНИМАЦИИ И КНОПКИ -->
+    <!-- СКРИПТЫ -->
     <script>
-        // 1. Анимация появления блоков при прокрутке
+        // 1. Анимация появления
         const fadeElements = document.querySelectorAll('.fade-in');
-
         const fadeObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
-        }, { threshold: 0.1 }); // Срабатывает, когда блок появляется на 10%
-
+        }, { threshold: 0.1 });
         fadeElements.forEach(el => fadeObserver.observe(el));
 
-        // 2. Логика кнопки "Наверх"
+        // 2. Кнопка Наверх
         const scrollTopBtn = document.getElementById('scrollTopBtn');
-
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
+            if (window.scrollY > 300) {
                 scrollTopBtn.classList.add('show');
             } else {
                 scrollTopBtn.classList.remove('show');
             }
         });
-
         scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
-
 </body>
 </html>
