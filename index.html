@@ -237,6 +237,17 @@
             font-size: 0.9rem;
         }
 
+        footer a {
+            color: #FFD700;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #FFE55C;
+            text-decoration: underline;
+        }
+
         /* Анимация появления */
         .fade-in {
             opacity: 0;
@@ -340,11 +351,15 @@
 
     <!-- Подвал -->
     <footer>
-        <p>&copy; 2026 Глеб Вне Кадра. Личный блог блогера из Омска. Все права защищены.</p>
-        <p style="display:none;">Глеб Вне Кадра, блогер Омск, личный блог, телеграм канал Глеба, спорт, учеба, питбайки, жизнь в Омске.</p>
+        <p>&copy; 2026 <a href="https://t.me/glebvnekadra" target="_blank">Глеб Вне Кадра</a>. Личный блог блогера из Омска. Все права защищены.</p>
+        <!-- Скрытый текст для поисковых роботов -->
+        <p style="display:none;">
+            <a href="https://t.me/glebvnekadra">Мой Telegram-канал</a>
+            Глеб Вне Кадра, блогер Омск, личный блог, телеграм канал Глеба, спорт, учеба, питбайки, жизнь в Омске.
+        </p>
     </footer>
 
-    <!-- СКРИПТЫ (осталась только анимация) -->
+    <!-- СКРИПТЫ (Анимация) -->
     <script>
         const fadeElements = document.querySelectorAll('.fade-in');
         const fadeObserver = new IntersectionObserver((entries) => {
