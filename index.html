@@ -225,13 +225,62 @@
             overflow: visible;
         }
 
-        /* Подвал (для SEO) */
+        /* Подвал */
         footer {
             text-align: center;
             padding: 30px 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: #666;
             font-size: 0.9rem;
+        }
+
+        /* --- НОВАЯ АНИМАЦИЯ ПОЯВЛЕНИЯ --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- НОВАЯ КНОПКА "НАВЕРХ" --- */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 55px;
+            height: 55px;
+            background-color: #FFD700;
+            color: #000;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+            z-index: 1000;
+        }
+        .scroll-top-btn.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .scroll-top-btn:hover {
+            background-color: #FFE55C;
+            transform: translateY(-5px);
+        }
+        .scroll-top-btn svg {
+            width: 25px;
+            height: 25px;
+            fill: #000;
         }
 
         /* Адаптив для телефонов */
@@ -248,6 +297,7 @@
             .section-title { font-size: 2.8rem; }
             .about-text { padding: 25px; font-size: 1rem; }
             .gallery-item img { height: 300px; }
+            .scroll-top-btn { bottom: 20px; right: 20px; width: 45px; height: 45px; }
         }
     </style>
 </head>
@@ -273,8 +323,8 @@
         </div>
     </header>
 
-    <!-- Обо мне -->
-    <section class="about-section">
+    <!-- Обо мне (с анимацией) -->
+    <section class="about-section fade-in">
         <h2 class="section-title">Обо мне</h2>
         <div class="about-text">
             <p>Я — Глеб, омский блогер. Веду личный блог, в котором рассказываю о своей жизни: учёбе, занятиях спортом и повседневных делах. Делюсь тем, что происходит со мной на самом деле, без прикрас и лишнего пафоса.</p>
@@ -283,24 +333,21 @@
         </div>
     </section>
 
-    <!-- Галерея -->
-    <section class="gallery-section">
+    <!-- Галерея (с анимацией) -->
+    <section class="gallery-section fade-in">
         <h2 class="section-title">Кадры из жизни</h2>
         <div class="grid-gallery">
             
-            <!-- Фото 1 -->
             <div class="gallery-item">
                 <img src="photo1.jpg" alt="Глеб Вне Кадра — фото 1">
                 <div class="gallery-caption">Фотографии из моего Telegram-канала</div>
             </div>
 
-            <!-- Фото 2 -->
             <div class="gallery-item">
                 <img src="photo2.jpg" alt="Глеб в зеркале">
                 <div class="gallery-caption">Фотографии из моего Telegram-канала</div>
             </div>
 
-            <!-- Фото 3 -->
             <div class="gallery-item">
                 <img src="photo3.jpg" alt="В компании друзей">
                 <div class="gallery-caption">Фотографии из моего Telegram-канала</div>
@@ -309,18 +356,16 @@
         </div>
     </section>
 
-    <!-- Другие соцсети -->
-    <section class="socials-section">
+    <!-- Другие соцсети (с анимацией) -->
+    <section class="socials-section fade-in">
         <h2 class="section-title">Я в соцсетях</h2>
         <div class="social-links">
             
-            <!-- Кнопка Telegram внизу -->
             <a href="https://t.me/glebvnekadra" class="social-btn" target="_blank">
                 <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM15.64 8.8L13.76 17.68C13.62 18.32 13.24 18.48 12.7 18.2L9.92 16.14L8.58 17.44C8.44 17.58 8.32 17.7 8.04 17.7L8.24 14.9L14.56 9.2C14.84 8.96 14.5 8.82 14.14 9.06L6.32 13.98L3.58 13.12C2.98 12.94 2.96 12.54 3.72 12.24L15.02 7.88C15.52 7.7 15.96 8 15.64 8.8Z" fill="currentColor"/></svg>
                 Telegram
             </a>
 
-            <!-- Кнопка ВКонтакте -->
             <a href="https://vk.ru/id1112578033" class="social-btn" target="_blank">
                 <svg viewBox="0 0 24 24"><path d="M13.162 18.994c.609 0 .858-.406.851-.915-.031-1.917.714-2.949 2.059-1.604 1.488 1.488 1.796 2.519 3.603 2.519h3.2c.808 0 1.126-.26 1.126-.668 0-.863-1.421-2.386-2.625-3.504-1.686-1.565-1.765-1.602-.313-3.486 1.801-2.339 4.157-5.336 2.073-5.336h-3.981c-.772 0-.828.435-1.103 1.083-.995 2.347-2.886 5.387-3.604 4.922-.751-.485-.407-2.406-.35-5.261.015-.754.011-1.271-1.141-1.539-.814-.18-1.826-.18-2.812-.18-2.684 0-3.128.462-3.128 1.19 0 1.83 2.25 2.195 2.25 6.84 0 1.562-1.015 3.417-2.235 3.417-1.262 0-1.588-1.099-3.427-4.217-.864-1.464-1.163-1.505-2.037-1.505h-3.887c-1.245 0-1.502.626-1.502 1.19 0 1.72 4.99 10.01 11.308 10.01h2.847z"/></svg>
                 ВКонтакте
@@ -329,11 +374,52 @@
         </div>
     </section>
 
-    <!-- Подвал для поисковиков (SEO) -->
+    <!-- Подвал (для SEO) -->
     <footer>
         <p>&copy; 2026 Глеб Вне Кадра. Личный блог блогера из Омска. Все права защищены.</p>
         <p style="display:none;">Глеб Вне Кадра, блогер Омск, личный блог, телеграм канал Глеба, спорт, учеба, питбайки, жизнь в Омске.</p>
     </footer>
+
+    <!-- КНОПКА НАВЕРХ -->
+    <button id="scrollTopBtn" class="scroll-top-btn" title="Наверх">
+        <svg viewBox="0 0 24 24">
+            <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/>
+        </svg>
+    </button>
+
+    <!-- СКРИПТЫ ДЛЯ АНИМАЦИИ И КНОПКИ -->
+    <script>
+        // 1. Анимация появления блоков при прокрутке
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 }); // Срабатывает, когда блок появляется на 10%
+
+        fadeElements.forEach(el => fadeObserver.observe(el));
+
+        // 2. Логика кнопки "Наверх"
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 
 </body>
 </html>
